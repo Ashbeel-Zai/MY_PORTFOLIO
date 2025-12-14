@@ -67,6 +67,50 @@
         <p>&copy; 2025 CyberSec Pro. All rights reserved.</p>
     </footer>
 
+    <script>
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            const hamburger = document.querySelector('.hamburger');
+
+            // Function to check if screen is mobile
+            function isMobile() {
+                return window.innerWidth <= 768; // Typical mobile breakpoint
+            }
+
+            // Toggle menu on mobile
+            function toggleMenu() {
+                if (isMobile()) {
+                    navLinks.classList.toggle('active');
+                    hamburger.classList.toggle('active');
+                }
+            }
+
+            // Add click event to menu toggle
+            if (menuToggle) {
+                menuToggle.addEventListener('click', toggleMenu);
+            }
+
+            // Close menu when clicking on a nav link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (isMobile()) {
+                        navLinks.classList.remove('active');
+                        hamburger.classList.remove('active');
+                    }
+                });
+            });
+
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                if (!isMobile()) {
+                    navLinks.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+            });
+        });
+    </script>
     <script src="js/script.js"></script>
     <script src="js/transitions.js"></script>
 </body>
